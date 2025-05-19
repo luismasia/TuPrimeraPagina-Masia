@@ -1,10 +1,6 @@
 {% extends 'padre.html' %}
-
 {% load static %}
-
-
 {% block contenido %}
-    
     {% if cursos %}
         <ul>
             {% for curso in cursos %}
@@ -14,8 +10,5 @@
         </ul>
     {% else %}
         <p>No se encontraron cursos</p>
-
     {% endif %}
-
-
 {% endblock %}

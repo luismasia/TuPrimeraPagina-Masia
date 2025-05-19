@@ -1,14 +1,26 @@
-{% extends 'padre.html' %}
-
+{% extends "padre.html" %}
 {% load static %}
-
-
 {% block contenido %}
-    <h1>Buscar curso</h1>
-    <form action="buscar" method="GET">       
-        <p>Nombre</p>
-        <input type="text" name="nombre" required>        
-        <input type="submit" value="Enviar"/>
-    </form>
+<div class="container mt-5">
+    <h2 class="mb-4">Buscar Curso</h2>
 
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <form action="buscar" method="GET">
+        {% csrf_token %}
+
+        <div class="col-md-6">
+            <label for="nombre" class="form-label">Nombre:</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" required>
+        </div>
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+    </form>
+</div>
 {% endblock %}
