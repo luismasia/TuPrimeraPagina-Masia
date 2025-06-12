@@ -1,11 +1,18 @@
 {% extends "padre.html" %}
 {% load static %}
 {% block contenido %}
-    <section class="py-5 bg-light text-center">
-      <div class="container">
-        <p class="lead mb-0">
-          Bienvenidos a mi primera página con Django. Para comenzar, haga click en alguna de las categorías que se encuentran en el panel superior.
-        </p>
-      </div>
-    </section>
+<section class="py-5 bg-light text-center">
+  <div class="container">
+    {% if user.is_authenticated %}
+      <p class="lead mb-0">
+        Bienvenidos a mi proyecto final de Python. Para comenzar, haga click en alguna de las categorías que se encuentran en el panel superior
+      </p>
+    {% else %}    
+      <div class="d-flex justify-content-center gap-4">
+        <a href="{% url 'login' %}" class="btn btn-outline-secondary px-4 py-2">Iniciar Sesión</a>
+        <a href="{% url 'signup' %}" class="btn btn-outline-secondary px-4 py-2">Registrarse</a>
+      </div> 
+    {% endif %}
+  </div>
+</section>
 {% endblock %}

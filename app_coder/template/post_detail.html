@@ -1,0 +1,20 @@
+{% extends "padre.html" %}
+{% block contenido %}
+<div class="container mt-5">
+  <div class="card shadow rounded-4 border-0">
+    <div class="card-body">
+      <h2 class="card-title">{{ post.titulo }}</h2>
+      <p class="text-muted">Publicado por {{ post.autor }} el {{ post.fecha_creacion|date:"d/m/Y H:i" }}</p>
+      <hr>
+      <p class="card-text">{{ post.contenido }}</p>
+      {% if request.user == post.autor %}
+        <div class="mt-4">
+          <a href="{% url 'post_edit' post.pk %}" class="btn btn-sm btn-outline-secondary">Editar</a>
+          <a href="{% url 'post_delete' post.pk %}" class="btn btn-sm btn-outline-danger">Borrar</a>
+        </div>
+      {% endif %}
+      <a href="{% url 'pages' %}" class="btn btn-link mt-3">Volver</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

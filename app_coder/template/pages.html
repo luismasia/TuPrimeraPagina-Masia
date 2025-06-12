@@ -1,0 +1,23 @@
+{% extends "padre.html" %}
+{% block contenido %}
+<div class="container mt-5">
+  <h1 class="mb-4">Foro</h1>
+  <a href="{% url 'post_create' %}" class="btn btn-secondary mb-3">Crear nuevo post</a>
+  {% for post in posts %}
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5>{{ post.titulo }}</h5>
+        <p>{{ post.contenido|truncatechars:100 }}</p>
+        <p class="text-muted">Por {{ post.autor }} el {{ post.fecha_creacion|date:"d/m/Y H:i" }}</p>
+        <a href="{% url 'post_detail' post.pk %}">Leer más</a>
+        {% if user == post.autor %}
+          | <a href="{% url 'post_edit' post.pk %}">Editar</a>
+          | <a href="{% url 'post_delete' post.pk %}">Borrar</a>
+        {% endif %}
+      </div>
+    </div>
+  {% empty %}
+    <p>No hay publicaciones aún.</p>
+  {% endfor %}
+</div>
+{% endblock %}

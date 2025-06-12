@@ -1,0 +1,29 @@
+{% extends "padre.html" %}
+{% load widget_tweaks %}
+
+{% block contenido %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow rounded-4 border-0">
+        <div class="card-body">
+          <h2 class="mb-4 text-center">Iniciar sesión</h2>
+          <form method="POST">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="mb-3">
+              <label for="id_username" class="form-label">Nombre de usuario</label>
+              {{ form.username|add_class:"form-control rounded-3 shadow-sm" }}
+            </div>
+            <div class="mb-3">
+              <label for="id_password" class="form-label">Contraseña</label>
+              {{ form.password|add_class:"form-control rounded-3 shadow-sm" }}
+            </div>
+            <button type="submit" class="btn btn-outline-secondary w-100 py-2">Ingresar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
